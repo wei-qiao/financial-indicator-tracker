@@ -1,10 +1,10 @@
+var weekly_data; 
 fetch('https://wei-qiao.github.io/financial-indicator-tracker/data.json')
     .then(response => response.json())
     .then(jsonData => {
-        weekly_data = jsonData
+        weekly_data = jsonData;
     })
     .catch(error => console.error('Error reading file:', error));
-// Weekly data
 m = weekly_data['ba_1month'].length
 let date = new Date('1934-12-27');
 let dates = [];
