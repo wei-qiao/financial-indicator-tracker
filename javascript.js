@@ -1,4 +1,3 @@
-console.log('js file loaded')
 fetch('https://wei-qiao.github.io/financial-indicator-tracker/data.json')
     .then(response => response.json())
     .then(jsonData => console.log(jsonData))
