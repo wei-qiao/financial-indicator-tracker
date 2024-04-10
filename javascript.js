@@ -3,9 +3,11 @@ fetch('https://wei-qiao.github.io/financial-indicator-tracker/data.json')
     .then(response => response.json())
     .then(jsonData => {
         weekly_data = jsonData;
+        console.log(weekly_data);
     })
     .catch(error => console.error('Error reading file:', error));
-m = weekly_data['ba_1month'].length
+weekly_data = JSON.parse(weekly_data);
+m = weekly_data['ba_1month'].length;
 let date = new Date('1934-12-27');
 let dates = [];
 for (let i = 0; i < m; i++) {
