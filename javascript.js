@@ -1,4 +1,5 @@
-fetch('data.json')
+console.log('js file loaded')
+fetch('/data.json')
     .then(response => response.json())
     .then(jsonData => console.log(jsonData))
     .catch(error => console.error('Error reading file:', error));
