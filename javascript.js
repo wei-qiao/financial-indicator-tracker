@@ -1,5 +1,5 @@
 console.log('js file loaded')
-fetch('/data.json')
+fetch('https://wei-qiao.github.io/financial-indicator-tracker/data.json')
     .then(response => response.json())
     .then(jsonData => console.log(jsonData))
     .catch(error => console.error('Error reading file:', error));
