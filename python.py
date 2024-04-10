@@ -8,11 +8,8 @@ def load_data():
     annual_data = {}
     data = [weekly_data, monthly_data, annual_data]
 
-    wb = openpyxl.load_workbook(r"T:\Research & Project\Historical Rate of Return.xlsm", data_only=True)
-    #ws_asset_mix = wb['Asset Mix']
-    #ws_dividend_scale = wb['Dividend Scale']
+    wb = openpyxl.load_workbook('the Excel file', data_only=True)
     ws_market_rates = wb['Market Rates']
-    #ws_gia = wb['Guaranteed Interest Account']
 
     ### Market Rates ###
     max_row = 0
@@ -42,7 +39,7 @@ def load_data():
         'cpi_core': market_rates_values[11]
     }
 
-    with open('C:\Users\wqiao\OneDrive - Pal Insurance Services LTD\Desktop\Useful Materials\data.json', 'w', encoding='utf-8') as f:
+    with open('json export path', 'w', encoding='utf-8') as f:
         json.dump(weekly_data, f, ensure_ascii=False, indent=4)
 
 
