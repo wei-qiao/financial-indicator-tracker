@@ -1,12 +1,11 @@
 fetch('https://wei-qiao.github.io/financial-indicator-tracker/data.json')
     .then(response => response.json())
-    .then(jsonData => console.log(jsonData))
+    .then(jsonData => {
+        weekly_data = jsonData
+    })
     .catch(error => console.error('Error reading file:', error));
 // Weekly data
-var weekly_data = jsonData.replace(/&#(\d+);/g, function (match, dec) {
-    return String.fromCharCode(dec);
-});
-weekly_data = JSON.parse(weekly_data);
+weekly_data = JSON.parse(jsonData);
 m = weekly_data['ba_1month'].length
 let date = new Date('1934-12-27');
 let dates = [];
@@ -14,15 +13,13 @@ for (let i = 0; i < m; i++) {
     date.setDate(date.getDate() + 7);
     dates.push(new Date(date));
 };
-
 function processData(data, field) {
     let result = [];
     for (let i = 0; i < m; i++) {
         result.push([dates[i], data[field][i]]);
-    }
+    };
     return result;
-}
-
+};
 let ba_1month = processData(weekly_data, 'ba_1month');
 let ba_3month = processData(weekly_data, 'ba_3month');
 let prime = processData(weekly_data, 'prime');
@@ -35,20 +32,17 @@ let ca10y_2y_spread = processData(weekly_data, 'ca10y_2y_spread');
 let gic_5y = processData(weekly_data, 'gic_5y');
 let cpi_headline = processData(weekly_data, 'cpi_headline');
 let cpi_core = processData(weekly_data, 'cpi_core');
-
 const series1 = [
     { name: 'Canadian Bankers\' Acceptance Rates - 1 month', data: ba_1month, color: '#6CF' },
     { name: 'Canadian Bankers\' Acceptance Rates - 3 month', data: ba_3month, color: '#06C' },
     { name: 'Prime', data: prime, color: '#BFBFBF' },
-]
-
+];
 const series2 = [
     { name: 'Headline CPI (YoY%)', data: cpi_headline, color: '#6CF' },
     { name: 'Core CPI (YoY%)', data: cpi_core, color: '#06C' },
     { name: 'Prime', data: prime, color: '#BFBFBF' },
     { name: 'CORRA', data: corra, color: '#ffc000' }
-]
-
+];
 const series3 = [
     { name: '2-year bond yields', data: ca2y, color: '#6CF' },
     { name: '5-year bond yields', data: ca5y, color: '#39F' },
@@ -56,11 +50,9 @@ const series3 = [
     { name: '30-year bond yields', data: ca30y, color: '544fc5' },
     { name: 'GIC 5-year', data: gic_5y, color: '#BFBFBF' },
 ]
-
 const series4 = [
     { name: 'Government bond 10-year and 2-year spread', data: ca10y_2y_spread, color: '#43682B' }
-]
-
+];
 Highcharts.setOptions({
     chart: {
         style: {
